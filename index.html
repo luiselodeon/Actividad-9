@@ -1,23 +1,256 @@
-<html>
-  <head>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.js"></script>
-
-    <script>
-      $(document).ready(function(){
-        $(".slider").bxSlider();
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurante BLUME Café & Bistro | Santiago de Querétaro</title>
+  <meta name="description" content="Restaurante BLUME Café & Bistro en Querétaro. Desayunos, brunch, panadería artesanal hecha en casa, pastas, pizzas y coctelería en una acogedora terraza arbolada.">
+  
+  <!-- Tipografías de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Estilos de Plugin bxSlider -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css">
+  
+  <!-- Hoja de estilos principal -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- jQuery y Plugin bxSlider -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.js"></script>
+  
+  <!-- Scripts globales (Reloj en tiempo real, Modo Oscuro, Botón Ir Arriba) -->
+  <script src="js/main.js" defer></script>
+  
+  <script>
+    $(document).ready(function(){
+      $('.slider').bxSlider({
+        auto: true,
+        pause: 4500,
+        speed: 700,
+        adaptiveHeight: true,
+        touchEnabled: true,
+        responsive: true,
+        pager: true,
+        controls: true,
+        autoHover: true
       });
-    </script>
+    });
+  </script>
+</head>
+<body>
 
-  </head>
-  <body>
+  <!-- ==========================================================================
+       CABECERA Y NAVEGACIÓN GLOBAL
+       ========================================================================== -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Inicio - BLUME Café & Bistro">
+        <img src="images/logo_blume_sin_fondo.png" alt="Logotipo BLUME Café & Bistro" class="logo-img">
+        <span>BLUME</span>
+      </a>
 
-    <div class="slider">
-      <div>I am a slide.</div>
-      <div>I am another slide.</div>
+      <nav aria-label="Navegación principal">
+        <ul>
+          <li><a href="index.html" class="active">Inicio</a></li>
+          <li><a href="pages/about_us.html">Nosotros</a></li>
+          <li><a href="pages/products.html">Menú</a></li>
+          <li><a href="pages/contact.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <div class="clock-widget" title="Fecha y hora actual">
+          <span class="clock-dot"></span>
+          <span id="reloj" class="clock-time">--/--/---- --:--:--</span>
+        </div>
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Alternar modo oscuro o claro">
+          Modo Oscuro
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       CONTENIDO PRINCIPAL
+       ========================================================================== -->
+  <main>
+    <!-- 1. SECCIÓN HERO / BIENVENIDA -->
+    <section id="inicio" aria-labelledby="hero-title">
+      <div class="badge-status">
+        <span class="badge-dot"></span>
+        <span>Abierto Lun a Dom &bull; 8:00 AM - 10:00 PM</span>
+      </div>
+
+      <h1 id="hero-title">
+        El placer de la buena mesa en una <span class="text-accent">terraza arbolada</span><span class="accent-dot">.</span>
+      </h1>
+
+      <p class="hero-role">
+        Un rincón acogedor en Santiago de Querétaro que combina panadería artesanal horneada en casa, café de especialidad, cocina contemporánea europea-fusión y coctelería de autor.
+      </p>
+
+      <div class="hero-actions">
+        <a href="pages/products.html" class="btn btn-primary">Explorar Menú</a>
+        <a href="pages/contact.html" class="btn btn-secondary">Reservar Mesa</a>
+      </div>
+    </section>
+
+    <!-- 2. CARRUSEL DE IMÁGENES DEL LOCAL (bxSlider) -->
+    <section id="espacio-local" aria-labelledby="slider-heading">
+      <div class="section-heading-row" style="margin-bottom: 1.5rem;">
+        <h2 id="slider-heading">Conoce Nuestra Atmósfera</h2>
+        <span class="heading-aside">Blvd. Hacienda del Jacal 303, Querétaro</span>
+      </div>
+
+      <!-- Contenedor del plugin bxSlider -->
+      <div class="slider">
+        <div>
+          <img src="images/negocio/Negocio 1.jpeg" alt="Terraza arbolada y fachada exterior de BLUME Café & Bistro">
+        </div>
+        <div>
+          <img src="images/negocio/Negocio 2.jpeg" alt="Barra de especialidades y salón interior acogedor">
+        </div>
+        <div>
+          <img src="images/negocio/Negocio 3.jpeg" alt="Ambiente de comedor bistró para cenas y sobremesa">
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PROPUESTAS CLAVE DE LA CARTA -->
+    <section id="propuesta-gastronomica" aria-labelledby="propuesta-heading">
+      <div class="section-heading-row" style="margin-bottom: 2rem;">
+        <h2 id="propuesta-heading">Nuestra Propuesta Culinaria</h2>
+        <span class="heading-aside">Hecho con pasión e ingredientes frescos</span>
+      </div>
+
+      <div class="menu-grid">
+        <!-- Tarjeta 1: Desayunos y Brunch -->
+        <article class="menu-card">
+          <div class="menu-card-body">
+            <span class="badge-dietary">Turno Matutino &bull; 8am - 2pm</span>
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Desayunos &amp; Brunch</h3>
+            </div>
+            <p class="menu-card-desc">
+              Pan dulce artesanal hecho en casa, panqués sin gluten, chilaquiles verdes, rojos y nuestros emblemáticos <em>Black Chilaquiles</em>, omelettes de autor, croque monsieur/madame, waffles y crujientes crowaffles.
+            </p>
+            <div style="margin-top: auto; padding-top: 1rem;">
+              <a href="pages/products.html" class="contact-link-arrow">Ver carta de desayunos &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarjeta 2: Comidas y Cenas -->
+        <article class="menu-card">
+          <div class="menu-card-body">
+            <span class="badge-dietary">Comidas &amp; Cenas &bull; 2pm - 10pm</span>
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Comidas &amp; Cenas</h3>
+            </div>
+            <p class="menu-card-desc">
+              Entradas para compartir como croquetas de jamón serrano, carpaccios y costras de queso, ensaladas frescas, pastas artesanales (fusilli, capellini, ravioles), pizzas a la leña y jugosas hamburguesas en pan brioche.
+            </p>
+            <div style="margin-top: auto; padding-top: 1rem;">
+              <a href="pages/products.html" class="contact-link-arrow">Ver carta de comidas &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarjeta 3: Bebidas y Coctelería -->
+        <article class="menu-card">
+          <div class="menu-card-body">
+            <span class="badge-dietary">Servicio Todo el Día</span>
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Café, Bar &amp; Sobremesa</h3>
+            </div>
+            <p class="menu-card-desc">
+              Barra de café caliente y frío (lattes de especialidad, chai, matcha, taro), tés herbales, frappés y smoothies, junto con mixología clásica y de autor (carajillos, spritz, mezcalitas) y cuidada selección de vinos.
+            </p>
+            <div style="margin-top: auto; padding-top: 1rem;">
+              <a href="pages/products.html" class="contact-link-arrow">Ver carta de bebidas &rarr;</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. EXPERIENCIA Y FILOSOFÍA BISTRÓ -->
+    <section id="sobre-mi" class="sobre-mi-card" aria-labelledby="experiencia-title">
+      <div>
+        <span class="badge-dietary" style="margin-bottom: 1rem;">La Experiencia BLUME</span>
+        <h2 id="experiencia-title">Un ambiente diseñado para la sobremesa</h2>
+        <p>
+          En BLUME Café &amp; Bistro creemos que cada momento en la mesa debe vivirse sin prisa. Nuestra terraza arbolada ofrece un remanso de tranquilidad en Santiago de Querétaro donde disfrutar desde un brunch de fin de semana hasta una cena íntima al anochecer.
+        </p>
+        <div class="chips-list">
+          <span class="chip">🌿 Terraza Arbolada</span>
+          <span class="chip">🥐 Panadería Artesanal</span>
+          <span class="chip">☕ Café de Especialidad</span>
+          <span class="chip">🍕 Horno &amp; Pastas</span>
+          <span class="chip">🍹 Coctelería de Autor</span>
+          <span class="chip">🌾 Opciones Sin Gluten</span>
+        </div>
+      </div>
+
+      <div class="contacto-canales" style="border: 1px solid var(--border-light); background: var(--surface-input);">
+        <h3>Horarios de Atención</h3>
+        <ul class="canales-list">
+          <li>
+            <strong>Lunes a Domingo</strong>
+            <span style="font-weight: 600; color: var(--ink);">8:00 a.m. a 10:00 p.m.</span>
+          </li>
+          <li>
+            <strong>Turno de Desayunos</strong>
+            <span>8:00 a.m. a 2:00 p.m.</span>
+          </li>
+          <li>
+            <strong>Turno de Comidas y Cenas</strong>
+            <span>2:00 p.m. a 10:00 p.m.</span>
+          </li>
+          <li>
+            <strong>Reservaciones y Dudas</strong>
+            <a href="tel:4422156832" class="contact-email" style="margin-bottom: 0;">442 215 6832</a>
+          </li>
+        </ul>
+        <div style="margin-top: 1rem;">
+          <a href="pages/contact.html" class="btn btn-primary" style="width: 100%;">Contactar / Ubicación</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       PIE DE PÁGINA (Footer)
+       ========================================================================== -->
+  <footer>
+    <div class="footer-card">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <img src="images/logo_blume_sin_fondo.png" alt="Logotipo BLUME Café & Bistro" class="footer-logo-img">
+        </a>
+        <h2>Restaurante BLUME Café &amp; Bistro</h2>
+        <p>Blvd. Hacienda del Jacal 303, Jardines de la Hacienda, Santiago de Querétaro, Qro.</p>
+        <p>Teléfono: <a href="tel:4422156832" class="text-accent">442 215 6832</a></p>
+      </div>
+
+      <ul class="footer-links" aria-label="Enlaces del pie de página">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="pages/about_us.html">Nosotros</a></li>
+        <li><a href="pages/products.html">Menú</a></li>
+        <li><a href="pages/contact.html">Contacto</a></li>
+      </ul>
     </div>
 
-  </body>
+    <p class="copyright">
+      &copy; 2026 Restaurante BLUME Café &amp; Bistro. Todos los derechos reservados.
+    </p>
+  </footer>
+
+  <!-- Botón flotante "Ir arriba" gestionado con jQuery -->
+  <a href="#" class="scrollup" id="irArriba" aria-label="Volver arriba">Subir</a>
+
+</body>
 </html>

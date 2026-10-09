@@ -134,6 +134,13 @@ header {
   gap: 1rem;
 }
 
+.header-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 .logo {
   justify-self: start;
   display: inline-flex;
@@ -1175,6 +1182,19 @@ footer {
     align-items: flex-start;
     padding: 2rem 1.8rem;
   }
+
+  .header-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .header-actions {
+    justify-self: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
 
 /* Teléfonos móviles */
@@ -1191,8 +1211,15 @@ footer {
   }
 
   .header-inner {
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: center;
   }
 
   nav ul {
@@ -1379,6 +1406,16 @@ body.dark-theme #btnEnviar {
   background: var(--gradient-primary);
   color: #FFFFFF !important;
   box-shadow: var(--shadow-primary);
+}
+
+body.dark-mode .logo-img,
+body.dark-theme .logo-img,
+body.dark-mode .footer-logo-img,
+body.dark-theme .footer-logo-img {
+  background: #FFFFFF;
+  padding: 4px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 body.dark-mode .theme-toggle-btn,
