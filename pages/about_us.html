@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros | Restaurante BLUME Café & Bistro | Querétaro</title>
+  <meta name="description" content="Conoce la historia, filosofía culinaria y el ambiente de terraza arbolada de Restaurante BLUME Café & Bistro en Santiago de Querétaro desde 2012.">
+  
+  <!-- Tipografías de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Hoja de estilos principal -->
+  <link rel="stylesheet" href="../css/style.css">
+  
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  
+  <!-- Scripts globales (Reloj en tiempo real, Modo Oscuro, Botón Ir Arriba) -->
+  <script src="../js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       CABECERA Y NAVEGACIÓN GLOBAL
+       ========================================================================== -->
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="logo" aria-label="Inicio - BLUME Café & Bistro">
+        <img src="../images/logo_blume_sin_fondo.png" alt="Logotipo BLUME Café & Bistro" class="logo-img">
+        <span>BLUME</span>
+      </a>
+
+      <nav aria-label="Navegación principal">
+        <ul>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="about_us.html" class="active">Nosotros</a></li>
+          <li><a href="products.html">Menú</a></li>
+          <li><a href="contact.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <div class="clock-widget" title="Fecha y hora actual">
+          <span class="clock-dot"></span>
+          <span id="reloj" class="clock-time">--/--/---- --:--:--</span>
+        </div>
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Alternar modo oscuro o claro">
+          Modo Oscuro
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       CONTENIDO PRINCIPAL
+       ========================================================================== -->
+  <main>
+    <!-- 1. HERO DE LA SECCIÓN NOSOTROS -->
+    <section id="nosotros-hero" aria-labelledby="about-title" style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; padding: 2.5rem 0.5rem 1rem;">
+      <div class="badge-status">
+        <span class="badge-dot"></span>
+        <span>Nuestra Historia &bull; Pasión Gastronómica desde 2012</span>
+      </div>
+
+      <h1 id="about-title" style="font-family: var(--font-heading); font-size: clamp(2.4rem, 5.2vw, 4rem); font-weight: 800; line-height: 1.15; color: var(--ink); letter-spacing: -1px; margin: 0;">
+        Un remanso gastronómico en el corazón de <span class="text-accent">Querétaro</span><span class="accent-dot">.</span>
+      </h1>
+
+      <p class="hero-role" style="font-size: clamp(1.05rem, 1.8vw, 1.25rem); color: var(--text-body); max-width: 760px; line-height: 1.65; margin: 0;">
+        Nacimos con la convicción de que los mejores momentos de la vida ocurren en torno a una buena mesa. Un concepto que une la frescura de una terraza arbolada con la devoción por la cocina artesanal hecha con tiempo, calma e ingredientes selectos.
+      </p>
+
+      <div class="hero-actions">
+        <a href="products.html" class="btn btn-primary">Explorar Carta de Platillos</a>
+        <a href="contact.html" class="btn btn-secondary">Visitar Nuestra Terraza</a>
+      </div>
+    </section>
+
+    <!-- 2. SECCIÓN HISTORIA Y FILOSOFÍA (Tarjeta 2 Columnas) -->
+    <section id="historia" aria-labelledby="historia-heading">
+      <div class="sobre-mi-card">
+        <div>
+          <span class="badge-dietary" style="margin-bottom: 1rem;">El Origen de BLUME</span>
+          <h2 id="historia-heading">De la pasión artesanal al bistró contemporáneo</h2>
+          <p>
+            Fundado en 2012 en Santiago de Querétaro, <strong>BLUME Café &amp; Bistro</strong> abrió sus puertas sobre Blvd. Hacienda del Jacal con un propósito nítido: brindar a nuestra comunidad un refugio acogedor donde escapar del bullicio urbano.
+          </p>
+          <p>
+            Desde el primer día decidimos hornear nuestro propio pan dulce y panqués tradicionales en casa, seleccionar personalmente los granos de café de altura mexicana y diseñar una cocina donde conviven recetas clásicas europeas con el sazón vibrante de México.
+          </p>
+          <div class="chips-list">
+            <span class="chip">🌿 Terraza Arbolada</span>
+            <span class="chip">🥐 Panadería Hecha en Casa</span>
+            <span class="chip">☕ Café de Especialidad</span>
+            <span class="chip">🌾 Opciones Sin Gluten</span>
+            <span class="chip">🍕 Horno y Pastas Frescas</span>
+            <span class="chip">🍹 Coctelería de Autor</span>
+          </div>
+        </div>
+
+        <div class="about-img-frame">
+          <img src="../images/negocio/Negocio 1.jpeg" alt="Fachada y terraza exterior arbolada de Restaurante BLUME Café & Bistro">
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TRES PILARES FUNDAMENTALES -->
+    <section id="pilares" aria-labelledby="pilares-heading">
+      <div class="section-heading-row" style="margin-bottom: 2rem;">
+        <h2 id="pilares-heading">Nuestros Tres Pilares</h2>
+        <span class="heading-aside">Compromiso y excelencia en cada detalle</span>
+      </div>
+
+      <div class="menu-grid">
+        <!-- Pilar 1: Panadería y Cocina Artesanal -->
+        <article class="menu-card">
+          <div class="menu-card-body">
+            <span class="badge-dietary">Hecho a Diario &bull; 100% Casero</span>
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Panadería y Repostería Propia</h3>
+            </div>
+            <p class="menu-card-desc">
+              Cada mañana nuestro taller amasa y hornea pan dulce artesanal, croissants crujientes y panqués de temporada. Además, ofrecemos opciones sin gluten preparadas con el mismo cuidado para garantizar una experiencia inclusiva y deliciosa.
+            </p>
+            <div style="margin-top: auto; padding-top: 1rem;">
+              <a href="products.html" class="contact-link-arrow">Ver desayunos y pan dulce &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pilar 2: La Terraza Arbolada -->
+        <article class="menu-card">
+          <div class="menu-card-body">
+            <span class="badge-dietary">Naturaleza &bull; Jardines de la Hacienda</span>
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">La Terraza y el Microclima</h3>
+            </div>
+            <p class="menu-card-desc">
+              Nuestro espacio exterior techado y rodeado de árboles maduros genera una atmósfera fresca, luminosa y relajante. Es el lugar perfecto para trabajar por la mañana, disfrutar un brunch familiar o compartir copas de vino al anochecer.
+            </p>
+            <div style="margin-top: auto; padding-top: 1rem;">
+              <a href="contact.html" class="contact-link-arrow">Cómo llegar a la terraza &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Pilar 3: Barismo y Calidez en el Servicio -->
+        <article class="menu-card">
+          <div class="menu-card-body">
+            <span class="badge-dietary">Barismo &bull; Mixología de Autor</span>
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Barismo de Altura y Hospitalidad</h3>
+            </div>
+            <p class="menu-card-desc">
+              Trabajamos con granos de café de especialidad tostados a punto, calibrando cada extracción para espressos, flat whites y lattes artesanales. Nuestro equipo te recibe con una sonrisa sincera y vocación de servicio para que te sientas en casa.
+            </p>
+            <div style="margin-top: auto; padding-top: 1rem;">
+              <a href="products.html" class="contact-link-arrow">Ver barra de especialidades &rarr;</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. GALERÍA DE AMBIENTE Y RINCONES -->
+    <section id="ambiente" aria-labelledby="ambiente-heading">
+      <div class="section-heading-row" style="margin-bottom: 2rem;">
+        <h2 id="ambiente-heading">Rincones del Bistró</h2>
+        <span class="heading-aside">Espacios versátiles para cada ocasión</span>
+      </div>
+
+      <div class="about-grid-two">
+        <article class="menu-card">
+          <div class="about-img-frame" style="height: 260px;">
+            <img src="../images/negocio/Negocio 2.jpeg" alt="Barra de café y salón acogedor interior">
+          </div>
+          <div class="menu-card-body">
+            <span class="badge-dietary">Salón Interior</span>
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Salón Principal y Barra</h3>
+            </div>
+            <p class="menu-card-desc">
+              Mobiliario en maderas cálidas, iluminación tenue y el aroma inconfundible a café recién molido y pan horneándose.
+            </p>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="about-img-frame" style="height: 260px;">
+            <img src="../images/negocio/Negocio 3.jpeg" alt="Comedor bistró para cenas y reuniones">
+          </div>
+          <div class="menu-card-body">
+            <span class="badge-dietary">Cenas &amp; Sobremesa</span>
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Atmósfera Nocturna y Cenas</h3>
+            </div>
+            <p class="menu-card-desc">
+              Al caer la tarde, la luz baja y las mesas se llenan de pastas al horno, pizzas artesanales, tablas de quesos y carajillos de la casa.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. BANNER LLAMADO A LA ACCIÓN (CTA) -->
+    <section id="cta-experiencia" aria-labelledby="cta-heading">
+      <div class="cta-banner-card">
+        <span class="badge-dietary">Experiencia Gastronómica Completa</span>
+        <h2 id="cta-heading">Te esperamos con la mesa puesta</h2>
+        <p>
+          Ya sea para comenzar el día con unos crujientes <em>Black Chilaquiles</em> o para celebrar un logro especial en nuestra terraza, en BLUME queremos ser parte de tus mejores memorias.
+        </p>
+        <div class="hero-actions" style="justify-content: center;">
+          <a href="products.html" class="btn btn-primary">Explorar Nuestro Menú</a>
+          <a href="contact.html" class="btn btn-secondary">Ubicación y Horarios</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       PIE DE PÁGINA (Footer)
+       ========================================================================== -->
+  <footer>
+    <div class="footer-card">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../images/logo_blume_sin_fondo.png" alt="Logotipo BLUME Café & Bistro" class="footer-logo-img">
+        </a>
+        <h2>Restaurante BLUME Café &amp; Bistro</h2>
+        <p>Blvd. Hacienda del Jacal 303, Jardines de la Hacienda, Santiago de Querétaro, Qro.</p>
+        <p>Teléfono: <a href="tel:4422156832" class="text-accent">442 215 6832</a></p>
+      </div>
+
+      <ul class="footer-links" aria-label="Enlaces del pie de página">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="about_us.html">Nosotros</a></li>
+        <li><a href="products.html">Menú</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+      </ul>
+    </div>
+
+    <p class="copyright">
+      &copy; 2026 Restaurante BLUME Café &amp; Bistro. Todos los derechos reservados.
+    </p>
+  </footer>
+
+  <!-- Botón flotante "Ir arriba" gestionado con jQuery -->
+  <a href="#" class="scrollup" id="irArriba" aria-label="Volver arriba">Subir</a>
+
+</body>
+</html>

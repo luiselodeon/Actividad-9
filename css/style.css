@@ -1797,3 +1797,77 @@ body.dark-theme .bx-wrapper .bx-pager.bx-default-pager a:hover {
   display: block;
   border: 0;
 }
+
+/* --------------------------------------------------------------------------
+   17. SECCIÓN NOSOTROS Y COMPONENTES VISUALES COMPLEMENTARIOS
+   -------------------------------------------------------------------------- */
+.cta-banner-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 3.5rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+body.dark-mode .cta-banner-card,
+body.dark-theme .cta-banner-card {
+  background: var(--surface-input);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.cta-banner-card h2 {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.5px;
+}
+
+.cta-banner-card p {
+  max-width: 650px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-body);
+}
+
+.about-img-frame {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-light);
+}
+
+.about-img-frame img {
+  width: 100%;
+  height: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.about-img-frame:hover img {
+  transform: scale(1.03);
+}
+
+.about-grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 860px) {
+  .about-grid-two {
+    grid-template-columns: 1fr;
+  }
+  .cta-banner-card {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
