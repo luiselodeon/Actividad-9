@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto &amp; Ubicación | Restaurante BLUME Café & Bistro | Querétaro</title>
+  <meta name="description" content="Contáctanos o visítanos en Restaurante BLUME Café & Bistro en Santiago de Querétaro. Horarios, reservaciones, mapa de Google Maps y formulario interactivo.">
+  
+  <!-- Tipografías de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Hoja de estilos principal -->
+  <link rel="stylesheet" href="../css/style.css">
+  
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  
+  <!-- Scripts globales (Reloj en vivo, Modo Oscuro, Botón Ir Arriba) -->
+  <script src="../js/main.js" defer></script>
+  
+  <!-- Script de validación de formulario y animaciones jQuery -->
+  <script src="../js/formulario.js" defer></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       CABECERA Y NAVEGACIÓN GLOBAL
+       ========================================================================== -->
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="logo" aria-label="Inicio - BLUME Café & Bistro">
+        <img src="../images/logo_blume_sin_fondo.png" alt="Logotipo BLUME Café & Bistro" class="logo-img">
+        <span>BLUME</span>
+      </a>
+
+      <nav aria-label="Navegación principal">
+        <ul>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="about_us.html">Nosotros</a></li>
+          <li><a href="products.html">Menú</a></li>
+          <li><a href="contact.html" class="active">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <div class="clock-widget" title="Fecha y hora actual">
+          <span class="clock-dot"></span>
+          <span id="reloj" class="clock-time">--/--/---- --:--:--</span>
+        </div>
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Alternar modo oscuro o claro">
+          Modo Oscuro
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       CONTENIDO PRINCIPAL
+       ========================================================================== -->
+  <main>
+    <!-- 1. HERO DE CONTACTO -->
+    <section id="contacto-hero" aria-labelledby="contact-title" style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; padding: 2.5rem 0.5rem 1rem;">
+      <div class="badge-status">
+        <span class="badge-dot"></span>
+        <span>Atención Personalizada &bull; Abierto de Lunes a Domingo</span>
+      </div>
+
+      <h1 id="contact-title" style="font-family: var(--font-heading); font-size: clamp(2.4rem, 5.2vw, 4rem); font-weight: 800; line-height: 1.15; color: var(--ink); letter-spacing: -1px; margin: 0;">
+        Ponte en Contacto con <span class="text-accent">BLUME</span><span class="accent-dot">.</span>
+      </h1>
+
+      <p class="hero-role" style="font-size: clamp(1.05rem, 1.8vw, 1.25rem); color: var(--text-body); max-width: 780px; line-height: 1.65; margin: 0;">
+        ¿Deseas reservar una mesa en nuestra terraza arbolada, consultar opciones para un evento privado o tienes alguna sugerencia? Escríbenos a través del formulario o visítanos directamente en Jardines de la Hacienda.
+      </p>
+    </section>
+
+    <!-- 2. LAYOUT UNIFICADO: INFORMACIÓN DIRECTA Y FORMULARIO VALIDADO -->
+    <section id="contacto-seccion" aria-labelledby="canales-heading">
+      <div class="contacto-layout">
+        <!-- Columna 1: Canales e Información Institucional -->
+        <div class="contacto-canales">
+          <span class="badge-dietary">Canales de Atención</span>
+          <h2 id="canales-heading" style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 700; color: var(--ink); letter-spacing: -0.4px; margin: 0;">
+            Visítanos o Llámanos
+          </h2>
+
+          <p style="font-size: 1rem; color: var(--text-body); line-height: 1.65; margin: 0;">
+            Estamos ubicados en una de las zonas más apacibles de Querétaro, rodeados de vegetación para brindarte la mejor experiencia de sobremesa.
+          </p>
+
+          <ul class="canales-list" style="margin-top: 0.5rem;">
+            <li>
+              <strong>Dirección Física</strong>
+              <a href="https://maps.google.com/?q=Restaurante+BLUME+Café+%26+Bistro+Queretaro" target="_blank" rel="noopener">
+                Blvd. Hacienda del Jacal 303, Jardines de la Hacienda, Santiago de Querétaro, Qro.
+              </a>
+            </li>
+            <li>
+              <strong>Teléfono para Reservaciones</strong>
+              <a href="tel:4422156832" class="contact-email" style="margin-bottom: 0;">
+                442 215 6832
+              </a>
+            </li>
+            <li>
+              <strong>Horario General de Servicio</strong>
+              <span style="font-weight: 600; color: var(--ink);">
+                Lunes a Domingo: 8:00 a.m. a 10:00 p.m.
+              </span>
+            </li>
+            <li>
+              <strong>Turno de Desayunos y Brunch</strong>
+              <span style="color: var(--text-body);">
+                8:00 a.m. a 2:00 p.m.
+              </span>
+            </li>
+            <li>
+              <strong>Turno de Comidas, Cenas y Bar</strong>
+              <span style="color: var(--text-body);">
+                2:00 p.m. a 10:00 p.m.
+              </span>
+            </li>
+            <li>
+              <strong>Instalaciones y Servicios</strong>
+              <span style="color: var(--text-body);">
+                Terraza arbolada exterior, salón privado climatizado, estacionamiento y área Pet-Friendly.
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Columna 2: Formulario de Contacto Validado con JS / jQuery -->
+        <div id="formulario" class="contacto-canales" style="background: var(--white);">
+          <span class="badge-dietary">Formulario Interactivo</span>
+          <h2 style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 700; color: var(--ink); letter-spacing: -0.4px; margin: 0;">
+            Envíanos un Mensaje
+          </h2>
+          <p style="font-size: 0.98rem; color: var(--text-body); line-height: 1.55; margin: 0;">
+            Todos los campos marcados con (*) son obligatorios. Validados con jQuery en tiempo real.
+          </p>
+
+          <form id="formContacto" novalidate style="margin-top: 0.5rem;">
+            <!-- Campo 1: Nombre -->
+            <div class="form-field">
+              <label for="nombre">Nombre Completo *</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Ej. Ana Sofía Morales" autocomplete="name">
+              <span class="field-error-msg"></span>
+            </div>
+
+            <!-- Campo 2: Correo -->
+            <div class="form-field">
+              <label for="correo">Correo Electrónico *</label>
+              <input type="email" id="correo" name="correo" placeholder="Ej. usuario@dominio.com" autocomplete="email">
+              <span class="field-error-msg"></span>
+            </div>
+
+            <!-- Campo 3: Asunto -->
+            <div class="form-field">
+              <label for="asunto">Asunto de la Consulta *</label>
+              <input type="text" id="asunto" name="asunto" placeholder="Ej. Reservación para 4 personas">
+              <span class="field-error-msg"></span>
+            </div>
+
+            <!-- Campo 4: Mensaje -->
+            <div class="form-field">
+              <label for="mensaje">Mensaje o Detalles *</label>
+              <textarea id="mensaje" name="mensaje" rows="4" placeholder="Indica la fecha, hora deseada, número de personas o tu duda específica..."></textarea>
+              <span class="field-error-msg"></span>
+            </div>
+
+            <button type="submit" id="btnEnviar" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem; justify-content: center;">
+              Enviar Mensaje
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SECCIÓN MAPA INTERACTIVO DE GOOGLE MAPS -->
+    <section id="mapa-ubicacion" aria-labelledby="mapa-heading">
+      <div class="section-heading-row" style="margin-bottom: 1.5rem;">
+        <div>
+          <span class="badge-dietary" style="margin-bottom: 0.5rem;">Ubicación Exacta</span>
+          <h2 id="mapa-heading" style="margin-top: 0.25rem;">Nuestra Ubicación en Santiago de Querétaro</h2>
+        </div>
+        <span class="heading-aside">Google Maps Oficial</span>
+      </div>
+
+      <p style="max-width: 780px; font-size: 1.05rem; color: var(--text-body); line-height: 1.7; margin-bottom: 1.75rem;">
+        Utiliza el mapa interactivo para obtener indicaciones GPS en tiempo real hacia nuestras instalaciones sobre Blvd. Hacienda del Jacal.
+      </p>
+
+      <!-- Contenedor adaptativo del mapa con iframe de Google Maps -->
+      <div class="map-responsive-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.453704355744!2d-100.41031989999999!3d20.569521299999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d3453c12ee80e9%3A0x988a375add3bb2a8!2sRestaurante%20BLUME%20Caf%C3%A9%20%26%20Bistro!5e0!3m2!1ses-419!2smx!4v1791486111640!5m2!1ses-419!2smx" 
+          width="100%" 
+          height="450" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="strict-origin-when-cross-origin"
+          title="Ubicación oficial de Restaurante BLUME Café & Bistro en Google Maps">
+        </iframe>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       PIE DE PÁGINA (Footer)
+       ========================================================================== -->
+  <footer>
+    <div class="footer-card">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../images/logo_blume_sin_fondo.png" alt="Logotipo BLUME Café & Bistro" class="footer-logo-img">
+        </a>
+        <h2>Restaurante BLUME Café &amp; Bistro</h2>
+        <p>Blvd. Hacienda del Jacal 303, Jardines de la Hacienda, Santiago de Querétaro, Qro.</p>
+        <p>Teléfono: <a href="tel:4422156832" class="text-accent">442 215 6832</a></p>
+      </div>
+
+      <ul class="footer-links" aria-label="Enlaces del pie de página">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="about_us.html">Nosotros</a></li>
+        <li><a href="products.html">Menú</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+      </ul>
+    </div>
+
+    <p class="copyright">
+      &copy; 2026 Restaurante BLUME Café &amp; Bistro. Todos los derechos reservados.
+    </p>
+  </footer>
+
+  <!-- Botón flotante "Ir arriba" gestionado con jQuery -->
+  <a href="#" class="scrollup" id="irArriba" aria-label="Volver arriba">Subir</a>
+
+</body>
+</html>
