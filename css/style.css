@@ -1720,6 +1720,13 @@ body.dark-theme .bx-wrapper .bx-pager.bx-default-pager a:hover {
   background: var(--surface-input);
 }
 
+.menu-card-img-wrapper a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
 .menu-card-img-wrapper img {
   width: 100%;
   height: 100%;
@@ -1727,6 +1734,84 @@ body.dark-theme .bx-wrapper .bx-pager.bx-default-pager a:hover {
   transition: transform 0.4s ease;
   display: block;
   cursor: pointer;
+}
+
+.menu-card-img-wrapper .zoom-hint {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(38, 23, 35, 0.75);
+  backdrop-filter: blur(4px);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity var(--transition);
+}
+
+.menu-card:hover .zoom-hint {
+  opacity: 1;
+}
+
+.menu-slider-container {
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.menu-slide-item {
+  position: relative;
+  width: 100%;
+}
+
+.menu-slide-link {
+  display: block;
+  position: relative;
+  cursor: zoom-in;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+}
+
+.menu-slide-link img {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-md);
+  transition: transform 0.3s ease;
+}
+
+.menu-slide-link:hover img {
+  transform: scale(1.015);
+}
+
+.menu-slide-link .zoom-badge-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(38, 23, 35, 0.85);
+  backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  transition: all var(--transition);
+}
+
+.menu-slide-link:hover .zoom-badge-btn {
+  background: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary);
 }
 
 .menu-card:hover .menu-card-img-wrapper img {
