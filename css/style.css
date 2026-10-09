@@ -1,0 +1,1762 @@
+/* 
+   RESTAURANTE BLUME CAFÉ & BISTRO
+   Sistema de Diseño Corporativo - Actividad 9
+*/
+
+/* --------------------------------------------------------------------------
+   IMPORTACIÓN DE TIPOGRAFÍAS (Google Fonts)
+   - Outfit: Fuente sans-serif geométrica para títulos de alto impacto.
+   - Plus Jakarta Sans: Fuente moderna y legible para textos y párrafos.
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* --------------------------------------------------------------------------
+   1. VARIABLES DE DISEÑO (Design Tokens)
+   Definición centralizada de colores, gradientes, sombras, bordes y tipografías.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Paleta Base y Fondos */
+  --bg-main: #FFFFFF;                /* Fondo principal blanco */
+  --cream: #FAF6F0;                  /* Fondo crema suave para contraste sutil */
+  --mist: #F4EBF2;                   /* Tono lila/crema suave */
+  --surface-input: #FAF8F6;          /* Fondo suave para campos de formulario */
+  --white: #FFFFFF;                  /* Blanco puro para tarjetas y superficies */
+
+  /* Colores Corporativos Oficiales BLUME Café & Bistro */
+  --primary: #56164b;                /* Color Principal: Púrpura bistró */
+  --primary-light: #7a226b;          /* Púrpura medio para transiciones y gradientes */
+  --primary-dark: #3e0e36;           /* Púrpura profundo para contrastes */
+  --accent-1: #59c13d;               /* Color de Acento 1: Verde frescura / huerto */
+  --accent-2: #0e9a4b;               /* Color de Acento 2: Verde esmeralda / follaje */
+
+  --primary-soft: rgba(86, 22, 75, 0.08);
+  --primary-glow: rgba(86, 22, 75, 0.35);
+  --accent-soft: rgba(89, 193, 61, 0.12);
+
+  /* Retrocompatibilidad semántica para selectores heredados */
+  --scarlet: var(--primary);
+  --crimson: var(--primary-dark);
+  --coral: var(--accent-1);
+  --scarlet-soft: var(--primary-soft);
+  --scarlet-glow: var(--primary-glow);
+
+  /* Gradientes y Sombras de la marca */
+  --gradient-primary: linear-gradient(135deg, #7a226b 0%, #56164b 100%);
+  --gradient-accent: linear-gradient(135deg, #59c13d 0%, #0e9a4b 100%);
+  --gradient-scarlet: var(--gradient-primary);
+
+  --shadow-primary: 0 12px 28px -8px rgba(86, 22, 75, 0.45);
+  --shadow-accent: 0 10px 24px -6px rgba(14, 154, 75, 0.35);
+  --shadow-scarlet: var(--shadow-primary);
+  --shadow-card: 0 18px 45px -12px rgba(86, 22, 75, 0.07), 0 2px 6px rgba(0, 0, 0, 0.02);
+  --shadow-hover: 0 24px 50px -10px rgba(86, 22, 75, 0.14), 0 4px 12px rgba(0, 0, 0, 0.04);
+
+  /* Colores de Texto y Neutros */
+  --ink: #261723;                    /* Púrpura carbón profundo para títulos */
+  --text-body: #5C4F58;              /* Gris cálido para párrafos y lectura */
+  --text-muted: #8E7C88;             /* Neutro secundario para subtítulos y etiquetas */
+  --border-light: rgba(86, 22, 75, 0.08);
+
+  /* Tipografía */
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  /* Curvaturas y Radios */
+  --radius-sm: 12px;                 /* Esquinas de inputs y botones pequeños */
+  --radius-md: 20px;                 /* Esquinas de tarjetas secundarias */
+  --radius-lg: 32px;                 /* Curvatura amplia para las grandes tarjetas principales */
+  --radius-pill: 9999px;             /* Curvatura completa tipo cápsula/píldora */
+
+  /* Transición estándar para animaciones suaves */
+  --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET Y ESTILOS GLOBALES
+   Garantiza coherencia de márgenes, modelo de caja y renderizado en navegadores.
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {             /* Esto es la parte de los márgenes y rellenos */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;            /* Incluye padding y border en el ancho total */
+}
+
+html {
+  scroll-behavior: smooth;           /* Desplazamiento suave al hacer clic en los enlaces internos */
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--cream);    /* Fondo general beige cálido (color de fondo de la página) */
+  color: var(--text-body);
+  line-height: 1.65;
+  min-height: 100vh;                 /* Esto es la parte del alto de la pantalla */
+  overflow-x: hidden;                /* Evita barras de desplazamiento horizontal accidentales */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Clases de texto utilitarias para resaltar palabras clave */
+.text-accent,
+.text-scarlet {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.text-accent-green {
+  color: var(--accent-1);
+  font-weight: 600;
+}
+
+.accent-dot {
+  color: var(--accent-1);             /* Punto verde de acento fresco del logotipo y títulos */
+}
+
+/* --------------------------------------------------------------------------
+   3. CABECERA Y BARRA DE NAVEGACIÓN (Header)
+   Permanece fija en la parte superior con un degradado que se fusiona con el fondo.
+   -------------------------------------------------------------------------- */
+header {
+  position: sticky;
+  top: 0;                 
+  z-index: 100;
+  padding: 1.25rem 1.5rem 0.5rem;           /* Esto es la parte del padding y margenes de la barra de navegación */
+  background: linear-gradient(180deg, var(--cream) 80%, rgba(250, 246, 240, 0) 100%);
+}
+
+.header-inner {
+  max-width: 1080px;                /* Esto es la parte del ancho de la página */
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  letter-spacing: -0.3px;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.logo img,
+.logo-img {
+  height: 48px;
+  max-height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform var(--transition);
+}
+
+.logo:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.logo:hover img,
+.logo:hover .logo-img {
+  transform: scale(1.04);
+}
+
+header nav {
+  justify-self: center;
+}
+
+/* Cápsula de navegación flotante */
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-pill);    /* Esto es la parte de las esquinas de la barra de navegación (bordes)*/
+  box-shadow: 0 4px 20px rgba(70, 45, 35, 0.05);
+  border: 1px solid var(--border-light);
+  gap: 0.25rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-body);
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition);
+  display: inline-block;
+}
+
+nav ul li a:hover {
+  color: var(--ink);
+  background-color: var(--mist);
+}
+
+/* Botón destacado del menú de navegación (si se requiere enlace destacado) */
+nav ul li a.nav-cta {
+  background: var(--gradient-primary);
+  color: var(--white);
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(86, 22, 75, 0.35);
+}
+
+nav ul li a.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(86, 22, 75, 0.45);
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   4. CONTENEDOR PRINCIPAL (Main)
+   Centra las secciones y establece una separación vertical equilibrada.
+   -------------------------------------------------------------------------- */
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;                         /* Espaciado generoso entre secciones */
+}
+
+/* --------------------------------------------------------------------------
+   5. SECCIÓN INICIO / HERO (#inicio)
+   Presentación tipográfica limpia directamente sobre el fondo beige.
+   -------------------------------------------------------------------------- */
+#inicio {
+  padding: 2.5rem 0.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+/* Badge con punto indicador */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--white);
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-body);
+  box-shadow: 0 3px 12px rgba(70, 45, 35, 0.04);
+  border: 1px solid var(--border-light);
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-1);
+  box-shadow: 0 0 0 3px rgba(89, 193, 61, 0.25);
+}
+
+#inicio h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 5.8vw, 4.4rem); /* Tamaño fluido según el ancho de pantalla */
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--ink);
+  letter-spacing: -1.2px;
+}
+
+#inicio .hero-role,
+#inicio > p {
+  font-size: 1.22rem;
+  line-height: 1.6;
+  color: var(--text-body);
+  max-width: 680px;
+}
+
+/* Botones en píldora */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition);
+  cursor: pointer;
+  border: none;
+}
+
+/* Botón primario con gradiente corporativo */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -6px rgba(86, 22, 75, 0.55);
+}
+
+/* Botón secundario en blanco con borde sutil */
+.btn-secondary {
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 4px 15px rgba(70, 45, 35, 0.05);
+  border: 1px solid var(--border-light);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(70, 45, 35, 0.08);
+  background: #FFFDFC;
+}
+
+/* --------------------------------------------------------------------------
+   6. SECCIÓN SOBRE MÍ (#sobre-mi)
+   Tarjeta blanca con esquinas curvas de 32px y estructura a 2 columnas.
+   -------------------------------------------------------------------------- */
+#sobre-mi,
+#amigos,
+.sobre-mi-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 3.5rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-light);
+  display: grid;
+  grid-template-columns: 1fr 1fr;    /* Columna de texto + Columna de carrusel/galeria */
+  gap: 3.5rem;
+  align-items: center;
+}
+
+#sobre-mi h2,
+#amigos h2,
+.sobre-mi-card h2 {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.5px;
+  margin-bottom: 1.25rem;
+}
+
+#sobre-mi p,
+#amigos p,
+.sobre-mi-card p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-body);
+  margin-bottom: 2rem;
+}
+
+/* Chips / Badges en formato píldora */
+.chips-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.chip {
+  background: var(--surface-input);
+  border: 1px solid var(--border-light);
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.45rem 1.15rem;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 6px rgba(70, 45, 35, 0.02);
+}
+
+/* --------------------------------------------------------------------------
+   7. CARRUSEL INTERACTIVO DE IMÁGENES
+   Muestra las imágenes de Luis y Roy con transiciones fluidas de opacidad.
+   -------------------------------------------------------------------------- */
+.carousel-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: 330px;
+  border-radius: 26px;               /* Esquinas redondeadas de la imagen */
+  overflow: hidden;
+  box-shadow: 0 16px 36px -10px rgba(70, 45, 35, 0.12);
+  background-color: var(--mist);
+}
+
+.carousel-track {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Cada diapositiva se superpone y se revela mediante opacidad */
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  transform: scale(1.03);            /* Ligero zoom out al activarse */
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                 /* Ajusta la foto sin deformarla */
+  object-position: center;
+  display: block;
+}
+
+/* Flechas flotantes de control anterior / siguiente */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: var(--ink);
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: all var(--transition);
+  z-index: 5;
+  user-select: none;
+}
+
+.carousel-arrow:hover {
+  background: var(--white);
+  color: var(--primary);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-arrow.prev {
+  left: 14px;
+}
+
+.carousel-arrow.next {
+  right: 14px;
+}
+
+/* Puntos indicadores inferiores del carrusel */
+.carousel-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.carousel-dots .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition);
+  padding: 0;
+}
+
+/* Indicador activo: se ensancha y toma el color del negocio */
+.carousel-dots .dot.active {
+  background: var(--primary);
+  width: 22px;
+  border-radius: 5px;
+}
+
+/* --------------------------------------------------------------------------
+   8. SECCIÓN PROYECTOS (#proyectos)
+   Tarjeta blanca que presenta el proyecto con elevación suave al hover.
+   -------------------------------------------------------------------------- */
+#proyectos {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+#proyectos h2 {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.5px;
+}
+
+.heading-aside {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Layout de proyectos con barra lateral */
+.proyectos-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+.proyectos-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.proyecto-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 2.5rem 2.8rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-light);
+  transition: all var(--transition);
+  height: 100%;
+}
+
+.proyecto-card:hover {
+  transform: translateY(-3px);       /* Elevación sutil al interactuar */
+  box-shadow: var(--shadow-hover);
+}
+
+.proyecto-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+
+.proyecto-card h3 a,
+.proyecto-card h3 a:link,
+.proyecto-card h3 a:visited {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.proyecto-card h3 a:hover {
+  color: var(--primary);
+}
+
+.proyecto-card p {
+  font-size: 1.05rem;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+/* Barra lateral de tecnologías (Sidebar) */
+.sidebar {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 2.2rem 2rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-light);
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.sidebar h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+  margin-bottom: 1.25rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.sidebar ul li {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface-input);
+  border: 1px solid var(--border-light);
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  transition: all var(--transition);
+}
+
+.sidebar ul li::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent-1);
+  box-shadow: 0 0 0 2.5px rgba(89, 193, 61, 0.2);
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.sidebar ul li:hover {
+  background: var(--white);
+  border-color: rgba(86, 22, 75, 0.25);
+  color: var(--primary);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(86, 22, 75, 0.06);
+}
+
+.sidebar ul li:hover::before {
+  transform: scale(1.3);
+}
+
+/* --------------------------------------------------------------------------
+   9. SECCIONES CONTACTO Y FORMULARIO (.contact-form-layout)
+   Tarjeta blanca unificada que organiza la información y los campos del formulario.
+   -------------------------------------------------------------------------- */
+.contact-form-layout,
+.contacto-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr; /* Distribución equilibrada entre info y formulario */
+  gap: 2.5rem;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 3.5rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-light);
+}
+
+.contacto-layout {
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+.contacto-canales {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 2.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contacto-canales h3 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+  margin-bottom: 0.25rem;
+}
+
+.canales-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.canales-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.canales-list li strong {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.canales-list li a {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition);
+  word-break: break-all;
+}
+
+.canales-list li a:hover {
+  color: var(--primary);
+}
+
+#contacto,
+#formulario {
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  border: none;
+}
+
+#contacto h2,
+#formulario h2 {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.5px;
+  margin-bottom: 1.25rem;
+}
+
+#contacto p {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--text-body);
+  margin-bottom: 1.75rem;
+}
+
+/* Enlace de correo destacado en púrpura corporativo */
+.contact-email {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.18rem;
+  text-decoration: none;
+  margin-bottom: 1.25rem;
+  transition: opacity var(--transition);
+}
+
+.contact-email:hover {
+  opacity: 0.85;
+}
+
+/* Enlace complementario con flecha y línea inferior */
+.contact-link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--ink);
+  padding-bottom: 2px;
+  transition: all var(--transition);
+}
+
+.contact-link-arrow:hover {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  gap: 0.6rem;
+}
+
+/* Estilos de los campos de entrada del formulario */
+#formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-left: 0.5rem;
+  transition: border-left 0.2s ease, padding 0.2s ease;
+}
+
+.field-error-msg {
+  display: none;
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  color: var(--accent-2);
+  font-weight: 600;
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+
+body.dark-mode .field-error-msg,
+body.dark-theme .field-error-msg {
+  color: var(--accent-1);
+}
+
+#formulario label {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-transform: uppercase;         /* Etiquetas en mayúsculas estilo minimalista */
+}
+
+/* Entradas de texto y números */
+#formulario input:not([type="checkbox"]):not([type="radio"]),
+#formulario textarea {
+  width: 100%;
+  background: var(--surface-input);  /* Fondo crema suave */
+  border: 1.5px solid rgba(70, 45, 35, 0.07);
+  border-radius: 14px;
+  padding: 0.95rem 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  color: var(--ink);
+  transition: all var(--transition);
+  outline: none;
+}
+
+#formulario input:not([type="checkbox"]):not([type="radio"])::placeholder,
+#formulario textarea::placeholder {
+  color: #A39690;
+  font-weight: 400;
+}
+
+/* Efecto de foco: resplandor corporativo */
+#formulario input:not([type="checkbox"]):not([type="radio"]):focus,
+#formulario textarea:focus {
+  background: var(--white);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3.5px rgba(86, 22, 75, 0.15);
+}
+
+#formulario textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* --------------------------------------------------------------------------
+   ESTILOS PARA LISTA DESPLEGABLE (Select) Y CASILLA DE VERIFICACIÓN (Checkbox)
+   Mantienen la coherencia con la paleta cálida, bordes suaves y detalles escarlata.
+   -------------------------------------------------------------------------- */
+
+/* Lista desplegable (Select) */
+#formulario select {
+  width: 100%;
+  background-color: var(--surface-input);
+  border: 1.5px solid rgba(70, 45, 35, 0.07);
+  border-radius: 14px;
+  padding: 0.95rem 2.8rem 0.95rem 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all var(--transition);
+  outline: none;
+  /* Flecha personalizada corporativa */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2356164b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 1.2rem) center;
+  background-size: 1rem;
+}
+
+#formulario select:hover {
+  background-color: #FFFDFC;
+  border-color: rgba(86, 22, 75, 0.3);
+}
+
+#formulario select:focus {
+  background-color: var(--white);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3.5px rgba(86, 22, 75, 0.15);
+}
+
+#formulario select option {
+  background-color: var(--white);
+  color: var(--ink);
+  padding: 0.6rem;
+  font-family: var(--font-body);
+}
+
+/* Casilla de verificación (Checkbox) */
+.form-field-checkbox,
+.form-field:has(input[type="checkbox"]) {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0.35rem 0;
+  cursor: pointer;
+}
+
+#formulario input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  background-color: var(--surface-input);
+  border: 1.8px solid rgba(70, 45, 35, 0.2);
+  border-radius: 7px;
+  cursor: pointer;
+  display: inline-grid;
+  place-content: center;
+  margin: 0;
+  padding: 0;
+  transition: all var(--transition);
+  outline: none;
+  position: relative;
+}
+
+#formulario input[type="checkbox"]:hover {
+  border-color: var(--primary);
+  background-color: var(--white);
+  transform: scale(1.05);
+}
+
+#formulario input[type="checkbox"]:focus-visible {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3.5px rgba(86, 22, 75, 0.18);
+}
+
+#formulario input[type="checkbox"]:checked {
+  background: var(--gradient-primary);
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(86, 22, 75, 0.35);
+}
+
+/* Palomita blanca personalizada dentro del checkbox */
+#formulario input[type="checkbox"]::after {
+  content: "";
+  width: 5px;
+  height: 10px;
+  border: solid var(--white);
+  border-width: 0 2.2px 2.2px 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 2px;
+}
+
+#formulario input[type="checkbox"]:checked::after {
+  transform: rotate(45deg) scale(1);
+}
+
+/* Etiqueta asociada al checkbox (más legible y con comportamiento clickeable) */
+.form-field-checkbox label,
+.form-field:has(input[type="checkbox"]) label,
+#formulario input[type="checkbox"] + label {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-transform: none;              /* Mantiene minúsculas para legibilidad de pregunta */
+  letter-spacing: normal;
+  color: var(--text-body);
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.45;
+  transition: color var(--transition);
+}
+
+.form-field-checkbox:hover label,
+.form-field:has(input[type="checkbox"]):hover label,
+#formulario input[type="checkbox"]:hover + label {
+  color: var(--ink);
+}
+
+/* Botón de envío con gradiente corporativo */
+#formulario button[type="submit"],
+#btnEnviar {
+  align-self: flex-start;
+  width: 100%;
+  background: var(--gradient-primary);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.95rem 2.2rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-primary);
+  cursor: pointer;
+  transition: all var(--transition);
+  margin-top: 0.5rem;
+}
+
+#formulario button[type="submit"]:hover,
+#btnEnviar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -6px rgba(86, 22, 75, 0.55);
+}
+
+#formulario button[type="submit"]:active,
+#btnEnviar:active {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   10. PIE DE PÁGINA (Footer)
+   Tarjeta flotante con marca personal y botones en píldora a redes / repositorios.
+   -------------------------------------------------------------------------- */
+footer {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.footer-card {
+  width: 100%;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 2rem 2.8rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  margin-bottom: 0.35rem;
+}
+
+.footer-logo img,
+.footer-logo-img {
+  height: 48px;
+  max-height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.footer-brand h2 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+  margin-bottom: 0.2rem;
+}
+
+.footer-brand p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.footer-links li a {
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface-input);
+  border: 1px solid var(--border-light);
+  padding: 0.55rem 1.35rem;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition);
+  display: inline-block;
+}
+
+.footer-links li a:hover {
+  background: var(--white);
+  color: var(--primary);
+  border-color: rgba(86, 22, 75, 0.25);
+  box-shadow: 0 4px 14px rgba(86, 22, 75, 0.08);
+  transform: translateY(-1px);
+}
+
+.copyright {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  text-align: center;                 /* Esto es la parte del alineado del texto */
+}
+
+/* --------------------------------------------------------------------------
+   11. ADAPTABILIDAD RESPONSIVA (Media Queries)
+   Ajustes de layout para tabletas y dispositivos móviles.
+   -------------------------------------------------------------------------- */
+/* Tabletas y pantallas intermedias */
+@media (max-width: 860px) {
+  #sobre-mi,
+  #amigos,
+  .sobre-mi-card {
+    grid-template-columns: 1fr;       /* Pasa a una sola columna */
+    padding: 2.5rem 1.8rem;
+    gap: 2.5rem;
+  }
+
+  .carousel {
+    max-width: 100%;
+    height: 280px;
+  }
+
+  .contact-form-layout,
+  .contacto-layout {
+    grid-template-columns: 1fr;       /* Pasa a una sola columna */
+    padding: 2.5rem 1.8rem;
+    gap: 2.5rem;
+  }
+
+  .proyectos-layout {
+    grid-template-columns: 1fr;       /* Pasa a una sola columna */
+    gap: 1.5rem;
+  }
+
+  .footer-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1.8rem;
+  }
+}
+
+/* Teléfonos móviles */
+@media (max-width: 640px) {
+  .proyecto-card {
+    padding: 2rem 1.6rem;
+  }
+
+  .sidebar {
+    padding: 1.8rem 1.6rem;
+  }
+  header {
+    padding: 1rem 1rem 0;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  nav ul {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 0.5rem;
+  }
+
+  nav ul li a {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.85rem;
+  }
+
+  main {
+    padding: 1.5rem 1rem 3.5rem;
+    gap: 3rem;
+  }
+
+  #inicio {
+    padding: 1.5rem 0 0.5rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   12. FUNCIONALIDADES INTERACTIVAS ADICIONALES (Paso 2)
+   - Modo Oscuro (Darkmode)
+   - Transiciones para imagenes de carrusel (.img-roy)
+   - Widget de reloj en tiempo real
+   - Conmutador de tema
+   - Navegacion activa y estados de formulario
+   -------------------------------------------------------------------------- */
+
+/* Soporte de transicion suave para la animacion hover y escala */
+.img-roy {
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Estado activo en la navegacion */
+nav ul li a.active {
+  color: var(--ink);
+  background-color: var(--mist);
+  font-weight: 600;
+}
+
+/* Widget de reloj en tiempo real */
+.clock-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-pill);
+  padding: 0.45rem 1.1rem;
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+  box-shadow: 0 3px 12px rgba(70, 45, 35, 0.04);
+}
+
+.clock-widget .clock-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-1);
+  box-shadow: 0 0 0 3px rgba(89, 193, 61, 0.25);
+  display: inline-block;
+  animation: clockPulse 1.5s infinite;
+}
+
+@keyframes clockPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#reloj,
+.clock-time {
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Boton conmutador de tema (Modo Oscuro) */
+.theme-toggle-btn {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  width: 135px;
+  text-align: center;
+  gap: 0.45rem;
+  box-shadow: 0 2px 8px rgba(70, 45, 35, 0.04);
+  transition: all var(--transition);
+}
+
+.theme-toggle-btn:hover {
+  background: var(--surface-input);
+  border-color: rgba(86, 22, 75, 0.3);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* Estilo para campo erroneo animado por jQuery (Acento verde) */
+.input-error {
+  border-color: var(--accent-1) !important;
+  box-shadow: 0 0 0 3.5px rgba(89, 193, 61, 0.28) !important;
+}
+
+.form-field.field-has-error {
+  border-left: 4px solid var(--accent-1) !important;
+}
+
+/* Variables y reglas para Modo Oscuro */
+body.dark-mode,
+body.dark-theme {
+  --bg-main: #141113;
+  --cream: #141113;
+  --mist: #1E171D;
+  --surface-input: #231C22;
+  --white: #1B151A;
+  --ink: #F7F2EE;
+  --text-body: #CFC5CB;
+  --text-muted: #A3969F;
+  --border-light: rgba(255, 255, 255, 0.1);
+  --primary: #c96dba;                /* Púrpura especial para Dark Mode */
+  --primary-light: #df8fd2;
+  --primary-dark: #a14c93;
+  --primary-soft: rgba(201, 109, 186, 0.15);
+  --primary-glow: rgba(201, 109, 186, 0.45);
+  --gradient-primary: linear-gradient(135deg, #df8fd2 0%, #c96dba 100%);
+  --gradient-scarlet: var(--gradient-primary);
+  --shadow-primary: 0 12px 28px -8px rgba(201, 109, 186, 0.45);
+  --shadow-scarlet: var(--shadow-primary);
+  --shadow-card: 0 18px 45px -12px rgba(0, 0, 0, 0.55), 0 2px 6px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 24px 50px -10px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(0, 0, 0, 0.45);
+  background-color: var(--cream);
+  color: var(--text-body);
+}
+
+body.dark-mode header,
+body.dark-theme header {
+  background: linear-gradient(180deg, var(--cream) 85%, rgba(20, 17, 19, 0) 100%);
+}
+
+body.dark-mode .btn-primary,
+body.dark-theme .btn-primary,
+body.dark-mode #formulario button[type="submit"],
+body.dark-theme #formulario button[type="submit"],
+body.dark-mode #btnEnviar,
+body.dark-theme #btnEnviar {
+  background: var(--gradient-primary);
+  color: #FFFFFF !important;
+  box-shadow: var(--shadow-primary);
+}
+
+body.dark-mode .theme-toggle-btn,
+body.dark-theme .theme-toggle-btn {
+  color: var(--ink);
+  background: var(--surface-input);
+}
+
+body.dark-mode .theme-toggle-btn:hover,
+body.dark-theme .theme-toggle-btn:hover {
+  color: var(--primary);
+  border-color: rgba(201, 109, 186, 0.4);
+}
+
+body.dark-mode nav ul li a.active,
+body.dark-theme nav ul li a.active {
+  color: #FFFFFF !important;
+  background: var(--gradient-primary);
+  box-shadow: 0 4px 14px rgba(201, 109, 186, 0.4);
+}
+
+body.dark-mode .btn-secondary,
+body.dark-theme .btn-secondary {
+  background: var(--surface-input);
+  color: var(--ink);
+  border-color: var(--border-light);
+}
+
+body.dark-mode .btn-secondary:hover,
+body.dark-theme .btn-secondary:hover {
+  background: var(--mist);
+  color: var(--ink);
+}
+
+body.dark-mode .carousel-arrow,
+body.dark-theme .carousel-arrow {
+  background: rgba(35, 28, 34, 0.85);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--ink);
+}
+
+body.dark-mode .carousel-arrow:hover,
+body.dark-theme .carousel-arrow:hover {
+  background: #FFFFFF;
+  color: var(--primary);
+}
+
+body.dark-mode #formulario select option,
+body.dark-theme #formulario select option {
+  background-color: var(--surface-input);
+  color: var(--ink);
+}
+
+/* Galeria de imagenes hermanas (.img-roy) para demostracion de siblings */
+.gallery-siblings-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gallery-caption {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.gallery-siblings {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.gallery-siblings .img-roy {
+  width: 100%;
+  height: 220px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid var(--border-light);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  display: block;
+}
+
+.gallery-siblings .img-roy:hover {
+  border-color: var(--primary);
+  box-shadow: 0 16px 36px rgba(86, 22, 75, 0.22);
+}
+
+body.dark-mode .gallery-caption,
+body.dark-theme .gallery-caption {
+  color: var(--text-muted);
+}
+
+body.dark-mode .gallery-siblings .img-roy,
+body.dark-theme .gallery-siblings .img-roy {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+body.dark-mode .gallery-siblings .img-roy:hover,
+body.dark-theme .gallery-siblings .img-roy:hover {
+  border-color: var(--primary);
+  box-shadow: 0 16px 36px rgba(201, 109, 186, 0.3);
+}
+
+/* Tarjeta contenedora de formulario independiente */
+.formulario-card {
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 3.5rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-light);
+}
+
+@media (max-width: 640px) {
+  .formulario-card {
+    padding: 2.2rem 1.6rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. BOTÓN "IR ARRIBA" (Scroll to Top)
+   -------------------------------------------------------------------------- */
+.scrollup {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: none; /* Oculto por defecto, controlado por scroll jQuery */
+  padding: 12px 20px;
+  background: var(--gradient-primary);
+  color: #FFFFFF !important;
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-primary);
+  z-index: 999;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all var(--transition);
+}
+
+.scrollup:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -6px rgba(86, 22, 75, 0.6);
+  color: #FFFFFF !important;
+}
+
+body.dark-mode .scrollup,
+body.dark-theme .scrollup {
+  background: var(--gradient-primary);
+  color: #FFFFFF !important;
+  box-shadow: 0 12px 28px -8px rgba(201, 109, 186, 0.5);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .scrollup:hover,
+body.dark-theme .scrollup:hover {
+  box-shadow: 0 16px 32px -6px rgba(201, 109, 186, 0.65);
+}
+
+/* --------------------------------------------------------------------------
+   14. ESTILOS Y ANIMACIÓN PARA MAGNIFIC POPUP (ZOOM EFFECT)
+   -------------------------------------------------------------------------- */
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+  opacity: 0;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: all 0.3s ease-out; 
+  -moz-transition: all 0.3s ease-out; 
+  -o-transition: all 0.3s ease-out; 
+  transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+  opacity: 1;
+}
+
+.mfp-with-zoom.mfp-ready.mfp-bg {
+  opacity: 0.88;
+  background: #141113;
+}
+
+.mfp-with-zoom.mfp-removing .mfp-container, 
+.mfp-with-zoom.mfp-removing.mfp-bg {
+  opacity: 0;
+}
+
+.mfp-no-margins .mfp-figure {
+  padding: 0;
+}
+
+.mfp-no-margins .mfp-content {
+  max-width: 900px;
+}
+
+.mfp-no-margins img.mfp-img {
+  padding: 0;
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   15. ESTILOS DE PERSONALIZACIÓN PARA BXSLIDER (BLUME CAFÉ & BISTRO)
+   -------------------------------------------------------------------------- */
+.bx-wrapper {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin-bottom: 2.5rem !important;
+}
+
+.bx-wrapper .bx-viewport {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  background: var(--surface-input);
+}
+
+.bx-wrapper img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 860px) {
+  .bx-wrapper img {
+    height: 360px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bx-wrapper img {
+    height: 260px;
+  }
+}
+
+.bx-wrapper .bx-pager.bx-default-pager a {
+  background: rgba(86, 22, 75, 0.25) !important;
+  transition: all var(--transition);
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+}
+
+.bx-wrapper .bx-pager.bx-default-pager a.active,
+.bx-wrapper .bx-pager.bx-default-pager a:hover {
+  background: var(--primary) !important;
+  transform: scale(1.25);
+}
+
+body.dark-mode .bx-wrapper .bx-pager.bx-default-pager a,
+body.dark-theme .bx-wrapper .bx-pager.bx-default-pager a {
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+
+body.dark-mode .bx-wrapper .bx-pager.bx-default-pager a.active,
+body.dark-theme .bx-wrapper .bx-pager.bx-default-pager a:hover {
+  background: var(--primary) !important;
+}
+
+/* --------------------------------------------------------------------------
+   16. COMPONENTES DE MENÚ, CARTA GASTRONÓMICA Y MAPA
+   -------------------------------------------------------------------------- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+.menu-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.menu-card-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: var(--surface-input);
+}
+
+.menu-card-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+  cursor: pointer;
+}
+
+.menu-card:hover .menu-card-img-wrapper img {
+  transform: scale(1.06);
+}
+
+.menu-card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex-grow: 1;
+}
+
+.menu-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.menu-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.menu-card-price {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.menu-card-desc {
+  font-size: 0.95rem;
+  color: var(--text-body);
+  line-height: 1.55;
+}
+
+.badge-dietary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-2);
+  background: var(--accent-soft);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  width: fit-content;
+}
+
+/* Contenedor responsivo para el mapa de Google Maps */
+.map-responsive-container {
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-light);
+}
+
+.map-responsive-container iframe {
+  width: 100%;
+  height: 440px;
+  display: block;
+  border: 0;
+}
