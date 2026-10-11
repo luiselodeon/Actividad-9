@@ -1,10 +1,10 @@
 // Script formulario.js
 // Funcionalidades: Validación de Formularios (JavaScript & jQuery),
-// Animación de sacudida (shake) en campo erróneo usando colores de acento (#59c13d),
+// Animación de sacudida (shake) en campo erróneo usando color escarlata (#B81424),
 // y Validación interactiva en tiempo real con manipulación del DOM (parent, siblings, slideDown/slideUp).
 
-// Color de acento según instrucciones del negocio para resaltar errores y estados
-const COLOR_ACENTO_ERROR = '#59c13d';
+// Color escarlata (#B81424) para resaltar errores y estados de validación
+const COLOR_ERROR = '#B81424';
 
 /**
  * Aplica una animacion de sacudida (shake) visual con jQuery sobre el campo con error
@@ -18,9 +18,9 @@ function animarCampoErroneo($campo, mensaje) {
   // Enfocar el elemento con error
   $campo.focus();
 
-  // Manipulación DOM: parent() para resaltar borde con color de acento y siblings() para mostrar mensaje
+  // Manipulación DOM: parent() para resaltar borde con color escarlata y siblings() para mostrar mensaje
   const $parent = $campo.closest('.form-field');
-  $parent.addClass('field-has-error').css('border-left', `4px solid ${COLOR_ACENTO_ERROR}`);
+  $parent.addClass('field-has-error').css('border-left', `4px solid ${COLOR_ERROR}`);
   $parent.find('.field-error-msg').text(mensaje).slideDown(200);
 
   // Animacion visual de sacudida (shake) mediante jQuery y resalte de borde
@@ -123,7 +123,7 @@ $(document).ready(function () {
     const $msg = $parent.find('.field-error-msg');
 
     if (texto.length > 0 && texto.length <= 3) {
-      $parent.addClass('field-has-error').css('border-left', `4px solid ${COLOR_ACENTO_ERROR}`);
+      $parent.addClass('field-has-error').css('border-left', `4px solid ${COLOR_ERROR}`);
       $msg.text('El nombre no es válido: debe tener más de 3 caracteres.').slideDown(200);
       $(this).addClass('input-error');
     } else {
@@ -140,7 +140,7 @@ $(document).ready(function () {
     const $msg = $parent.find('.field-error-msg');
 
     if (texto.length > 0 && !regexCorreo.test(texto)) {
-      $parent.addClass('field-has-error').css('border-left', `4px solid ${COLOR_ACENTO_ERROR}`);
+      $parent.addClass('field-has-error').css('border-left', `4px solid ${COLOR_ERROR}`);
       $msg.text('El correo no es válido: ingresa un formato como usuario@dominio.com.').slideDown(200);
       $(this).addClass('input-error');
     } else {
@@ -157,7 +157,7 @@ $(document).ready(function () {
     const $msg = $parent.find('.field-error-msg');
 
     if (texto.length > 0 && texto.length < 4) {
-      $parent.addClass('field-has-error').css('border-left', `4px solid ${COLOR_ACENTO_ERROR}`);
+      $parent.addClass('field-has-error').css('border-left', `4px solid ${COLOR_ERROR}`);
       $msg.text('El asunto debe tener al menos 4 caracteres.').slideDown(200);
       $(this).addClass('input-error');
     } else {
@@ -174,7 +174,7 @@ $(document).ready(function () {
     const $msg = $parent.find('.field-error-msg');
 
     if (texto.length > 0 && texto.length < 10) {
-      $parent.addClass('field-has-error').css('border-left', `4px solid ${COLOR_ACENTO_ERROR}`);
+      $parent.addClass('field-has-error').css('border-left', `4px solid ${COLOR_ERROR}`);
       $msg.text('El mensaje debe contener al menos 10 caracteres.').slideDown(200);
       $(this).addClass('input-error');
     } else {

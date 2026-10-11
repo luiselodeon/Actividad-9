@@ -28,6 +28,8 @@
   --primary-dark: #3e0e36;           /* Púrpura profundo para contrastes */
   --accent-1: #59c13d;               /* Color de Acento 1: Verde frescura / huerto */
   --accent-2: #0e9a4b;               /* Color de Acento 2: Verde esmeralda / follaje */
+  --error: #B81424;                  /* Color de Error: Rojo escarlata tradicional */
+  --error-glow: rgba(184, 20, 36, 0.28);
 
   --primary-soft: rgba(86, 22, 75, 0.08);
   --primary-glow: rgba(86, 22, 75, 0.35);
@@ -832,7 +834,7 @@ main {
   display: none;
   font-family: var(--font-body);
   font-size: 0.84rem;
-  color: var(--accent-2);
+  color: var(--error);
   font-weight: 600;
   margin-top: 0.2rem;
   line-height: 1.4;
@@ -840,7 +842,7 @@ main {
 
 body.dark-mode .field-error-msg,
 body.dark-theme .field-error-msg {
-  color: var(--accent-1);
+  color: var(--error);
 }
 
 #formulario label {
@@ -1355,14 +1357,14 @@ nav ul li a.active {
   transform: translateY(-1px);
 }
 
-/* Estilo para campo erroneo animado por jQuery (Acento verde) */
+/* Estilo para campo erroneo animado por jQuery (Escarlata corporativo) */
 .input-error {
-  border-color: var(--accent-1) !important;
-  box-shadow: 0 0 0 3.5px rgba(89, 193, 61, 0.28) !important;
+  border-color: var(--error) !important;
+  box-shadow: 0 0 0 3.5px var(--error-glow) !important;
 }
 
 .form-field.field-has-error {
-  border-left: 4px solid var(--accent-1) !important;
+  border-left: 4px solid var(--error) !important;
 }
 
 /* Variables y reglas para Modo Oscuro */
@@ -1377,6 +1379,8 @@ body.dark-theme {
   --text-body: #CFC5CB;
   --text-muted: #A3969F;
   --border-light: rgba(255, 255, 255, 0.1);
+  --error: #ff4d5a;                  /* Escarlata luminoso de alta visibilidad para Dark Mode */
+  --error-glow: rgba(255, 77, 90, 0.35);
   --primary: #c96dba;                /* Púrpura especial para Dark Mode */
   --primary-light: #df8fd2;
   --primary-dark: #a14c93;
